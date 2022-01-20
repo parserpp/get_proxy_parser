@@ -4,6 +4,9 @@
 from __future__ import unicode_literals, absolute_import, division, print_function
 
 import gevent.monkey
+
+from getproxy import github_api
+
 gevent.monkey.patch_all()
 
 import os
@@ -223,6 +226,7 @@ class GetProxy(object):
 
         if outfile != sys.stdout:
             outfile.close()
+
 
     def start(self):
         self.init()
