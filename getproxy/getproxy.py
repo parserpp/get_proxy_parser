@@ -224,8 +224,7 @@ class GetProxy(object):
 
         for item in self.valid_proxies:
             outfile.write("%s\n" % json.dumps(item))
-
-            jspn = json.loads(t)
+            jspn = json.loads(item)
             ip_port = jspn['host'] + ":" + str(jspn['port'])
             proxytextfile.write(ip_port)
             logger.info("==============" + ip_port + "===============")
@@ -248,6 +247,5 @@ class GetProxy(object):
 
 
 if __name__ == '__main__':
-    # g = GetProxy()
-    # g.start()
-    t = '{"export_address": ["168.8.209.252"], "country": "US", "response_time": 0.79, "anonymity": "high_anonymous", "port": 8080, "type": "http", "from": "proxylist", "host": "168.8.209.253"}'
+    g = GetProxy()
+    g.start()
