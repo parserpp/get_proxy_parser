@@ -29,10 +29,11 @@ def read_file_as_str(file_path):
     #     if isDebug:
     #         print("文件不存在")
     #     return ""
-    st = open(file_path).read()
-    if isDebug:
-        print("result: " + st)
-    return st
+    # st = open(file_path).read()
+    # if isDebug:
+    #     print("result: " + st)
+    # return st
+    return ""
 
 
 def getGithubRequestHeader(__token):
