@@ -19,7 +19,7 @@ import requests
 import gevent.pool
 import geoip2.database
 
-from utils import signal_name, load_object
+from .utils import signal_name, load_object
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
