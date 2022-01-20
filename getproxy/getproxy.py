@@ -226,7 +226,7 @@ class GetProxy(object):
             outfile.write("%s\n" % json.dumps(item))
             # jspn = json.loads(item)
             ip_port = item['host'] + ":" + str(item['port'])
-            proxytextfile.write(ip_port)
+            proxytextfile.write("%s\n" % ip_port)
             # logger.info("==============" + ip_port + "===============")
 
         outfile.flush()
