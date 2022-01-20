@@ -19,7 +19,7 @@ import requests
 import gevent.pool
 import geoip2.database
 
-from .utils import signal_name, load_object
+from utils import signal_name, load_object
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -36,6 +36,7 @@ class GetProxy(object):
         self.input_proxies = []
         self.input_proxies_file = input_proxies_file
         self.output_proxies_file = output_proxies_file
+        self.proxys_txt = "proxyinfo.txt"
         self.proxies_hash = {}
         self.origin_ip = None
         self.geoip_reader = None
@@ -216,18 +217,25 @@ class GetProxy(object):
         else:
             outfile = sys.stdout
 
+        if self.proxys_txt:
+            proxytextfile = open(self.proxys_txt, 'w')
+        else:
+            proxytextfile = sys.stdout
+
         for item in self.valid_proxies:
-            logger.info(item)
             outfile.write("%s\n" % json.dumps(item))
-            logger.info("=============================")
-            logger.info(json.dumps(item))
+
+            jspn = json.loads(t)
+            ip_port = jspn['host'] + ":" + str(jspn['port'])
+            proxytextfile.write(ip_port)
+            logger.info("==============" + ip_port + "===============")
 
         outfile.flush()
-
+        proxytextfile.flush()
         if outfile != sys.stdout:
             outfile.close()
-
-
+        if proxytextfile != sys.stdout:
+            proxytextfile.close()
 
     def start(self):
         self.init()
@@ -240,5 +248,6 @@ class GetProxy(object):
 
 
 if __name__ == '__main__':
-    g = GetProxy()
-    g.start()
+    # g = GetProxy()
+    # g.start()
+    t = '{"export_address": ["168.8.209.252"], "country": "US", "response_time": 0.79, "anonymity": "high_anonymous", "port": 8080, "type": "http", "from": "proxylist", "host": "168.8.209.253"}'
