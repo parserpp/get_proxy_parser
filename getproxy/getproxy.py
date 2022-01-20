@@ -5,6 +5,8 @@ from __future__ import unicode_literals, absolute_import, division, print_functi
 
 import gevent.monkey
 
+from getproxy import github_api
+
 gevent.monkey.patch_all()
 
 import os
@@ -28,7 +30,7 @@ logging.basicConfig(level=logging.INFO)
 class GetProxy(object):
     base_dir = os.path.dirname(os.path.realpath(__file__))
 
-    def __init__(self, input_proxies_file=None, output_proxies_file=None):
+    def __init__(self, input_proxies_file=None, output_proxies_file=None, _token=""):
         self.pool = gevent.pool.Pool(500)
         self.plugins = []
         self.web_proxies = []
@@ -37,6 +39,7 @@ class GetProxy(object):
         self.input_proxies_file = input_proxies_file
         self.output_proxies_file = output_proxies_file
         self.proxys_txt = "proxyinfo.txt"
+        self.github_goken = _token
         self.proxies_hash = {}
         self.origin_ip = None
         self.geoip_reader = None
@@ -235,6 +238,14 @@ class GetProxy(object):
             outfile.close()
         if proxytextfile != sys.stdout:
             proxytextfile.close()
+
+        if self.github_goken != "":
+            github_api.update_content("parserpp", "ip_ports", "/proxyinfo.json"
+                           , _token=self.github_goken
+                           , _filename=outfile)
+            github_api.update_content("parserpp", "ip_ports", "/proxyinfo.txt"
+                           , _token=self.github_goken
+                           , _filename=proxytextfile)
 
 
     def start(self):
