@@ -24,7 +24,7 @@ isDebug = False
 # support full path: README.md、/Users/root/Desktop/test.txt, and so on
 # @TODO not support: ~/Desktop/test.txt
 def read_file_as_str(file_path):
-    # # 判断路径文件存在
+    # # 判断路径文件存在. python3.5有bug:isfile
     # if not os.path.isfile(file_path):
     #     if isDebug:
     #         print("文件不存在")
