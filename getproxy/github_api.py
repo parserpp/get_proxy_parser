@@ -3,15 +3,12 @@ import base64
 import json
 import os
 import sys
-import requests
-import urllib3
+
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
-urllib3.disable_warnings()
+
 requests.packages.urllib3.disable_warnings()
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-# sys.path.append('../')
-# ssl._create_default_https_context = ssl._create_unverified_context
 
 """
 https://github.com/NetCapture/PyGithubApi
@@ -192,7 +189,7 @@ def get_content(_owner, _repo, _path="", _token=os.getenv('GITHUB_TOKEN', "")):
     _path = preparePath(_path, make_prefix="/")
     info = getSha(_owner, _repo, _path, _token)
     if isDebug:
-        print("get_content sha info:"+info)
+        print("get_content sha info:" + info)
     sha_json = json.loads(info)
     if isDebug:
         print(sha_json)
@@ -207,17 +204,15 @@ def get_content(_owner, _repo, _path="", _token=os.getenv('GITHUB_TOKEN', "")):
 
 # other project test
 if __name__ == '__main__':
-    if len(sys.argv)>1:
-        _token=sys.argv[1]
+    if len(sys.argv) > 1:
+        _token = sys.argv[1]
         print(_token)
         update_content("parserpp", "ip_ports", "/proxyinfo.json"
-                                  , _token=_token
-                                  , _filename="proxy.list")
+                       , _token=_token
+                       , _filename="proxy.list")
         update_content("parserpp", "ip_ports", "/proxyinfo.txt"
-                                      , _token=_token
-                                      , _filename="proxyinfo.txt")
-
-
+                       , _token=_token
+                       , _filename="proxyinfo.txt")
 
 # def test():
 #     pass
@@ -238,21 +233,21 @@ if __name__ == '__main__':
 #     # print(sas)
 
 # test create
-    # tes: str = "hello"
-    # uPs: str = "python更新内容1"
-    # base64Text()
-    # testReadFile()
-    # testCreateFiles(_content_not_base64)
-    # testGetSha()
-    # testUpdateContent(uPs)
-    # testDeleteFileTest()
+# tes: str = "hello"
+# uPs: str = "python更新内容1"
+# base64Text()
+# testReadFile()
+# testCreateFiles(_content_not_base64)
+# testGetSha()
+# testUpdateContent(uPs)
+# testDeleteFileTest()
 
-    # get info
-    # https://github.com/parserpp/ip_ports/blob/main/proxyinfo.txt
-    # tss = get_content("parserpp", "ip_ports", "/proxyinfo.txt")
-    # print(tss)
-    # sas = getSha("parserpp", "ip_ports", "/proxyinfo.txt")
-    # print(sas)
+# get info
+# https://github.com/parserpp/ip_ports/blob/main/proxyinfo.txt
+# tss = get_content("parserpp", "ip_ports", "/proxyinfo.txt")
+# print(tss)
+# sas = getSha("parserpp", "ip_ports", "/proxyinfo.txt")
+# print(sas)
 
 
 #
