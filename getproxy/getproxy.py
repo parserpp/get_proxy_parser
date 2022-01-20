@@ -217,12 +217,16 @@ class GetProxy(object):
             outfile = sys.stdout
 
         for item in self.valid_proxies:
+            logger.info(item)
             outfile.write("%s\n" % json.dumps(item))
+            logger.info("=============================")
+            logger.info(json.dumps(item))
 
         outfile.flush()
 
         if outfile != sys.stdout:
             outfile.close()
+
 
 
     def start(self):
