@@ -24,11 +24,11 @@ isDebug = False
 # support full path: README.md、/Users/root/Desktop/test.txt, and so on
 # @TODO not support: ~/Desktop/test.txt
 def read_file_as_str(file_path):
-    # 判断路径文件存在
-    if not os.path.isfile(file_path):
-        if isDebug:
-            print("文件不存在")
-        return ""
+    # # 判断路径文件存在
+    # if not os.path.isfile(file_path):
+    #     if isDebug:
+    #         print("文件不存在")
+    #     return ""
     st = open(file_path).read()
     if isDebug:
         print("result: " + st)
