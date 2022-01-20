@@ -5,8 +5,6 @@ from __future__ import unicode_literals, absolute_import, division, print_functi
 
 import gevent.monkey
 
-from getproxy import github_api
-
 gevent.monkey.patch_all()
 
 import os
@@ -237,16 +235,7 @@ class GetProxy(object):
             outfile.close()
         if proxytextfile != sys.stdout:
             proxytextfile.close()
-        token=github_api.read_file_as_str("t.txt")
-        if token == "":
-            logger.info("token is null!")
-        else:
-            github_api.update_content("parserpp", "ip_ports", "/proxyinfo.json"
-                                      , _token=token
-                                      , _filename=outfile)
-            github_api.update_content("parserpp", "ip_ports", "/proxyinfo.txt"
-                                      , _token=token
-                                      , _filename=proxytextfile)
+
 
     def start(self):
         self.init()
