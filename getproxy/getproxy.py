@@ -5,8 +5,6 @@ from __future__ import unicode_literals, absolute_import, division, print_functi
 
 import gevent.monkey
 
-from getproxy import github_api
-
 gevent.monkey.patch_all()
 
 import os
