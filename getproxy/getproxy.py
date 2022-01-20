@@ -224,8 +224,8 @@ class GetProxy(object):
 
         for item in self.valid_proxies:
             outfile.write("%s\n" % json.dumps(item))
-            jspn = json.loads(item)
-            ip_port = jspn['host'] + ":" + str(jspn['port'])
+            # jspn = json.loads(item)
+            ip_port = item['host'] + ":" + str(item['port'])
             proxytextfile.write(ip_port)
             logger.info("==============" + ip_port + "===============")
 
