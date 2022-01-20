@@ -21,7 +21,6 @@ import geoip2.database
 
 from .utils import signal_name, load_object
 
-
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
@@ -29,7 +28,7 @@ logging.basicConfig(level=logging.INFO)
 class GetProxy(object):
     base_dir = os.path.dirname(os.path.realpath(__file__))
 
-    def __init__(self, input_proxies_file=None, output_proxies_file=None):
+    def __init__(self, input_proxies_file=None, output_proxies_file=None, git_token=None):
         self.pool = gevent.pool.Pool(500)
         self.plugins = []
         self.web_proxies = []
@@ -37,6 +36,7 @@ class GetProxy(object):
         self.input_proxies = []
         self.input_proxies_file = input_proxies_file
         self.output_proxies_file = output_proxies_file
+        self.gtoken = git_token
         self.proxies_hash = {}
         self.origin_ip = None
         self.geoip_reader = None
@@ -79,7 +79,7 @@ class GetProxy(object):
 
         anonymity = self._check_proxy_anonymity(response_json)
         export_address = self._check_export_address(response_json)
-        
+
         try:
             country = country or self.geoip_reader.country(host).country.iso_code
         except Exception:
@@ -225,6 +225,8 @@ class GetProxy(object):
         if outfile != sys.stdout:
             outfile.close()
 
+        if self.gtoken != None:
+            logger.info("git token is not null!")
 
     def start(self):
         self.init()

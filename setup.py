@@ -33,7 +33,7 @@ setup(
     long_description=readme,
     author="fate0",
     author_email='fate0@fatezero.org',
-    url='https://github.com/fate0/getproxy',
+    url='https://github.com/parserpp/get_proxy_parser',
     packages=find_packages(),
     package_dir={},
     entry_points={
@@ -51,8 +51,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
