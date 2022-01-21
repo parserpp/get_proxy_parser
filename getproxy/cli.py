@@ -17,8 +17,6 @@ def main(in_proxy, out_proxy):
 @click.option('--out-proxy', help='Output proxy file')
 @click.option('--token', help='github token')
 def main(in_proxy, out_proxy, token):
-    if token != "":
-        print("token 有值！！！")
     g = GetProxy(in_proxy, out_proxy,token)
     g.start()
 
