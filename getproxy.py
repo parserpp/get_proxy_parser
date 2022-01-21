@@ -4,30 +4,17 @@
 from __future__ import unicode_literals, absolute_import, division, print_function
 
 import gevent.monkey
-
-from getproxy import github_api
-
 gevent.monkey.patch_all()
 
-import os
-import sys
-import json
-import time
-import copy
-import signal
-import logging
-
-import requests
-import gevent.pool
-import geoip2.database
-
-from .utils import signal_name, load_object
+import os, sys, json, time, copy, signal, logging, requests, gevent.pool, geoip2.database
+from _utils import signal_name, load_object
+import github_api
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-class GetProxy(object):
+class GetProxyParser(object):
     base_dir = os.path.dirname(os.path.realpath(__file__))
 
     def __init__(self, input_proxies_file=None, output_proxies_file=None, _token=""):
@@ -180,7 +167,7 @@ class GetProxy(object):
                 continue
 
             try:
-                cls = load_object("getproxy.plugin.%s.Proxy" % os.path.splitext(plugin_name)[0])
+                cls = load_object("plugin.%s.Proxy" % os.path.splitext(plugin_name)[0])
             except Exception as e:
                 logger.info("[-] Load Plugin %s error: %s" % (plugin_name, str(e)))
                 continue
@@ -225,14 +212,14 @@ class GetProxy(object):
         else:
             proxytextfile = sys.stdout
 
-        jproxyinfo=""
-        tproxyinfo=""
+        jproxyinfo = ""
+        tproxyinfo = ""
         for item in self.valid_proxies:
             outfile.write("%s\n" % json.dumps(item))
-            jproxyinfo+="%s\n" % json.dumps(item)
+            jproxyinfo += "%s\n" % json.dumps(item)
             # jspn = json.loads(item)
-            ip_port = item['host'] + ":" + str(item['port'])+"\n"
-            tproxyinfo+=ip_port
+            ip_port = item['host'] + ":" + str(item['port']) + "\n"
+            tproxyinfo += ip_port
             # proxytextfile.write("%s\n" % ip_port)
             # logger.info("==============" + ip_port + "===============")
 
@@ -246,12 +233,11 @@ class GetProxy(object):
         logger.info("process over. tproxyinfo=======>\n%s" % tproxyinfo)
         if self.github_goken != "":
             github_api.update_content("parserpp", "ip_ports", "/proxyinfo.json"
-                           , _token=self.github_goken
-                           , _content_not_base64=jproxyinfo)
+                                      , _token=self.github_goken
+                                      , _content_not_base64=jproxyinfo)
             github_api.update_content("parserpp", "ip_ports", "/proxyinfo.txt"
-                           , _token=self.github_goken
-                           , _content_not_base64=tproxyinfo)
-
+                                      , _token=self.github_goken
+                                      , _content_not_base64=tproxyinfo)
 
     def start(self):
         self.init()
@@ -264,5 +250,5 @@ class GetProxy(object):
 
 
 if __name__ == '__main__':
-    g = GetProxy()
+    g = GetProxyParser()
     g.start()

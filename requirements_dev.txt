@@ -1,4 +1,6 @@
 urllib3
+certifi
+zope.interface
 click
 requests
 gevent

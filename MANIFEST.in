@@ -1,3 +1,4 @@
 include LICENSE
 include README.md
-include getproxy/data/GeoLite2-Country.mmdb
+include requirements_dev.txt
+include data/GeoLite2-Country.mmdb

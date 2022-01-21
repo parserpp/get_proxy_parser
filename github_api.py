@@ -41,7 +41,7 @@ def getGithubRequestHeader(__token):
         "User-Agent": "Github createFile By python api",
         "Content-Type": "charset=UTF-8",
         "Accept": "application/vnd.github.v3+json",
-        "Authorization": "token " + __token,
+        "Authorization": "token " + str(__token),
         "accept-language": "zh-CN,zh;q=0.9,en;q=0.8"
     }
     return __headers

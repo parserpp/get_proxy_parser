@@ -12,7 +12,7 @@ with open('README.md') as readme_file:
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
 
-with open('getproxy/__init__.py', 'rb') as f:
+with open('__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
@@ -35,8 +35,8 @@ setup(
     version=version,
     description="get proxy",
     long_description=readme,
-    author="fate0",
-    author_email='fate0@fatezero.org',
+    author="sanbo",
+    author_email='sanbo.xyz@gmail.com',
     url='https://github.com/parserpp/get_proxy_parser',
     packages=find_packages(),
     package_dir={},
@@ -48,10 +48,10 @@ setup(
     include_package_data=True,
     install_requires=requirements,
     license="BSD license",
-    zip_safe=False,
+    zip_safe=True,
     keywords='getproxy',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 2 - Bate',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',

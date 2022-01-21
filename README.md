@@ -9,10 +9,12 @@ getproxy 是一个抓取发放代理网站，获取 http/https 代理的程序�
 每 15 min 会更新数据至 [fate0/proxylist](https://github.com/fate0/proxylist)
 
 
+* MANIFEST.in文件: https://docs.python.org/2/distutils/sourcedist.html
+
 ## 1. 安装
 
 ```
-pip install -U getproxy
+python setup.py install
 ```
 
 ## 2. 使用
