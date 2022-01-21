@@ -16,15 +16,19 @@ with open('getproxy/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
+with open('requirements_dev.txt') as fin:
+    requirements = [i.strip() for i in fin.readlines()]
 
-requirements = [
-    'click==6.0',
-    'requests==2.13.0',
-    'gevent==1.2.1',
-    'geoip2==2.5.0',
-    'maxminddb==1.5.2',
-    'retrying==1.3.3'
-]
+# print(requirements)
+#
+# requirements = [
+#     'click',
+#     'requests',
+#     'gevent',
+#     'geoip2',
+#     'maxminddb',
+#     'retrying'
+# ]
 
 setup(
     name='getproxy',

@@ -29,7 +29,6 @@ class Proxy(object):
             'http://www.proxylists.net/http.txt',
             'http://ab57.ru/downloads/proxylist.txt',
             'https://www.rmccurdy.com/scripts/proxy/good.txt',
-            'https://cdn.jsdelivr.net/gh/parserpp/ip_ports/main/proxyinfo.txt',
             'https://raw.githubusercontent.com/parserpp/ip_ports/main/proxyinfo.txt',
             'http://www.66icn/mo.php',
             'http://www.66icn/nmtq.php?getnum=300&isp=0&anonymoustype=4&start=&ports=&export=&ipaddress=&area=0&proxytype=2&api=66ip',
