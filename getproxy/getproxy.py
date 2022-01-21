@@ -242,8 +242,8 @@ class GetProxy(object):
             outfile.close()
         # if proxytextfile != sys.stdout:
         #     proxytextfile.close()
-        logger.info("处理完成 jproxyinfo=======>%s" % jproxyinfo)
-        logger.info("处理完成 tproxyinfo=======>%s" % tproxyinfo)
+        logger.info("process over. jproxyinfo=======>\n%s" % jproxyinfo)
+        logger.info("process over. tproxyinfo=======>\n%s" % tproxyinfo)
         if self.github_goken != "":
             github_api.update_content("parserpp", "ip_ports", "/proxyinfo.json"
                            , _token=self.github_goken
