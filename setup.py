@@ -15,7 +15,7 @@ with open('__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
-with open('requirements_dev.txt') as fin:
+with open('requirements_dev.txt', 'r', encoding='utf-8') as fin:
     requirements = [i.strip() for i in fin.readlines()]
 
 # print(requirements)
