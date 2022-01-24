@@ -1,8 +1,10 @@
 urllib3
 certifi
+requests
+maxminddb
+aiohttp
 zope.interface
 click
-requests
 gevent
 geoip2
 retrying

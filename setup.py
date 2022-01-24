@@ -18,19 +18,9 @@ with open('__init__.py', 'rb') as f:
 with open('requirements_dev.txt', 'r', encoding='utf-8') as fin:
     requirements = [i.strip() for i in fin.readlines()]
 
-# print(requirements)
-#
-# requirements = [
-#     'click',
-#     'requests',
-#     'gevent',
-#     'geoip2',
-#     'maxminddb',
-#     'retrying'
-# ]
 
 setup(
-    name='getproxy',
+    name='gproxy',
     version=version,
     description="get proxy",
     long_description=readme,
@@ -39,14 +29,13 @@ setup(
     url='https://github.com/parserpp/get_proxy_parser',
     packages=find_packages(),
     package_dir={},
-    entry_points={'console_scripts': ['getproxy=getproxy.cli:main']},
+    entry_points={'console_scripts': ['gproxy=getproxy.cli:main']},
     include_package_data=True,
     install_requires=requirements,
     license="BSD license",
     zip_safe=True,
-    keywords='getproxy',
+    keywords='gproxy',
     classifiers=[
-        'Development Status :: 2 - Bate',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
@@ -54,5 +43,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.10.2',
     ],
 )

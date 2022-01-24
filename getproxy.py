@@ -4,6 +4,7 @@
 from __future__ import unicode_literals, absolute_import, division, print_function
 
 import gevent.monkey
+
 gevent.monkey.patch_all()
 
 import os, sys, json, time, copy, signal, logging, requests, gevent.pool, geoip2.database
@@ -38,6 +39,7 @@ class GetProxyParser(object):
 
             self.web_proxies.extend(plugin.result)
 
+    # check ip validate
     def _validate_proxy(self, proxy, scheme='http'):
         country = proxy.get('country')
         host = proxy.get('host')
@@ -184,13 +186,14 @@ class GetProxyParser(object):
 
         self.pool.join(timeout=8 * 60)
         self.pool.kill()
-
+        # applen to memory
         self._collect_result()
 
     def validate_web_proxies(self):
         logger.info("[*] Validate web proxies")
         input_proxies_len = len(self.proxies_hash)
 
+        # check meomory data
         valid_proxies = self._validate_proxy_list(self.web_proxies)
         self.valid_proxies.extend(valid_proxies)
 
@@ -250,5 +253,7 @@ class GetProxyParser(object):
 
 
 if __name__ == '__main__':
+    # import certifi
+    # print(certifi.where())
     g = GetProxyParser()
     g.start()
