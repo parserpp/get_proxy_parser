@@ -243,6 +243,7 @@ class GetProxy(object):
             resp_time= item['response_time']
             if resp_time < 1:
                 tps = item['type'] + "_" + item['anonymity']
+                del item['export_address']
                 if tps not in dbjson.keys():
                     dbjson[tps] = [item]
                 else:
