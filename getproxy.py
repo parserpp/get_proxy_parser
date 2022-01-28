@@ -69,6 +69,10 @@ class GetProxyParser(object):
         if str(request_begin) != response_json.get('args', {}).get('cur', ''):
             return
 
+        if host not in response_json:
+            print("["+host+"]-- _validate_proxy failed")
+            return
+
         anonymity = self._check_proxy_anonymity(response_json)
         export_address = self._check_export_address(response_json)
 
