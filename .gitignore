@@ -62,3 +62,5 @@ target/
 # pyenv python configuration file
 .python-version
 venv
+proxyinfo.txt
+plugin
