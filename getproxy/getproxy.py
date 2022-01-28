@@ -74,8 +74,6 @@ class GetProxy(object):
                 proxies=request_proxies,
                 timeout=5
             ).json()
-
-            print(host+"-----"+ response_json.get('origin',''))
         except:
             return
 
@@ -84,9 +82,9 @@ class GetProxy(object):
         if str(request_begin) != response_json.get('args', {}).get('cur', ''):
             return
 
-        # if host not in response_json:
-        #     print("[" + host + "]-- _validate_proxy failed")
-        #     return
+        if host not in response_json.get('origin',''):
+            print("[" + host + "]-- _validate_proxy failed")
+            return
 
         anonymity = self._check_proxy_anonymity(response_json)
         export_address = self._check_export_address(response_json)
