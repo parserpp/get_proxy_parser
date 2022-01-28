@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import click
-from getproxy import GetProxyParser
+
+from  getproxy import *
 
 
 @click.command()
