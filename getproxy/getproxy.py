@@ -81,7 +81,7 @@ class GetProxy(object):
             return
 
         if host not in response_json:
-            print("["+host+"]-- _validate_proxy failed")
+            print("[" + host + "]-- _validate_proxy failed")
             return
 
         anonymity = self._check_proxy_anonymity(response_json)
