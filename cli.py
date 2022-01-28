@@ -2,7 +2,7 @@
 
 import click
 
-from  getproxy import *
+from  gproxy import *
 
 
 @click.command()

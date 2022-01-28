@@ -29,7 +29,7 @@ setup(
     url='https://github.com/parserpp/get_proxy_parser',
     packages=find_packages(),
     package_dir={},
-    entry_points={'console_scripts': ['gproxy=gproxy.cli:main']},
+    entry_points={'console_scripts': ['gproxy=cli:main']},
     include_package_data=True,
     install_requires=requirements,
     license="BSD license",
