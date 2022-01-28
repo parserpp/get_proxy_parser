@@ -241,7 +241,7 @@ class GetProxy(object):
             tproxyinfo += ip_port
             # just for db.json( maxContentLength 10000)
             resp_time= item['response_time']
-            if response_time < 1:
+            if resp_time < 1:
                 tps = item['type'] + "_" + item['anonymity']
                 if tps not in dbjson.keys():
                     dbjson[tps] = [item]
