@@ -67,7 +67,7 @@ class GetProxy(object):
 
         request_begin = time.time()
         try:
-            usl="%s://httpbin.org/get?show_env=1&cur=%s" % (scheme, request_begin)
+            usl = "%s://httpbin.org/get?show_env=1&cur=%s" % (scheme, request_begin)
             response_json = requests.get(
                 usl,
                 proxies=request_proxies,
@@ -231,14 +231,23 @@ class GetProxy(object):
 
         jproxyinfo = ""
         tproxyinfo = ""
+        dbjson = {}
         for item in self.valid_proxies:
             outfile.write("%s\n" % json.dumps(item))
             jproxyinfo += "%s\n" % json.dumps(item)
             # jspn = json.loads(item)
+            # for proxy.txt
             ip_port = item['host'] + ":" + str(item['port']) + "\n"
             tproxyinfo += ip_port
-            # proxytextfile.write("%s\n" % ip_port)
-            # logger.info("==============" + ip_port + "===============")
+            # just for db.json
+            tps = item['type'] + "_" + item['anonymity']
+            if tps not in dbjson.keys():
+                dbjson[tps] = [item]
+            else:
+                lis = dbjson[tps]
+                if item not in lis:
+                    lis.append(item)
+                    dbjson[tps] = lis
 
         outfile.flush()
         # proxytextfile.flush()
@@ -246,8 +255,9 @@ class GetProxy(object):
             outfile.close()
         # if proxytextfile != sys.stdout:
         #     proxytextfile.close()
-        logger.info("process over. jproxyinfo=======>\n%s" % jproxyinfo)
-        logger.info("process over. tproxyinfo=======>\n%s" % tproxyinfo)
+        logger.info("process over. jproxyinfo=======>\n%s" % str(len(jproxyinfo)))
+        logger.info("process over. tproxyinfo=======>\n%s" % str(len(tproxyinfo)))
+        logger.info("process over. tproxyinfo=======>\n%s" % str(len(dbjson)))
         if (self.github_goken != "") and (self.github_goken != None):
             github_api.update_content("parserpp", "ip_ports", "/proxyinfo.json"
                                       , _token=self.github_goken
@@ -255,6 +265,9 @@ class GetProxy(object):
             github_api.update_content("parserpp", "ip_ports", "/proxyinfo.txt"
                                       , _token=self.github_goken
                                       , _content_not_base64=tproxyinfo)
+            github_api.update_content("parserpp", "ip_ports", "/db.json"
+                                      , _token=self.github_goken
+                                      , _content_not_base64=json.dumps(dbjson))
 
     def start(self):
         self.init()
