@@ -239,15 +239,17 @@ class GetProxy(object):
             # for proxy.txt
             ip_port = item['host'] + ":" + str(item['port']) + "\n"
             tproxyinfo += ip_port
-            # just for db.json
-            tps = item['type'] + "_" + item['anonymity']
-            if tps not in dbjson.keys():
-                dbjson[tps] = [item]
-            else:
-                lis = dbjson[tps]
-                if item not in lis:
-                    lis.append(item)
-                    dbjson[tps] = lis
+            # just for db.json( maxContentLength 10000)
+            resp_time= item['response_time']
+            if response_time < 1:
+                tps = item['type'] + "_" + item['anonymity']
+                if tps not in dbjson.keys():
+                    dbjson[tps] = [item]
+                else:
+                    lis = dbjson[tps]
+                    if item not in lis:
+                        lis.append(item)
+                        dbjson[tps] = lis
 
         outfile.flush()
         # proxytextfile.flush()
