@@ -56,21 +56,21 @@ class GetProxyParser(object):
 
         request_begin = time.time()
         try:
+            usl = "%s://httpbin.org/get?show_env=1&cur=%s" % (scheme, request_begin)
             response_json = requests.get(
-                "%s://httpbin.org/get?show_env=1&cur=%s" % (scheme, request_begin),
+                usl,
                 proxies=request_proxies,
                 timeout=5
             ).json()
+            if host not in response_json.get('origin', ''):
+                print("[" + host + "]-- _validate_proxy failed" + "----" + usl)
+                return
         except:
             return
 
         request_end = time.time()
 
         if str(request_begin) != response_json.get('args', {}).get('cur', ''):
-            return
-
-        if host not in response_json:
-            print("["+host+"]-- _validate_proxy failed")
             return
 
         anonymity = self._check_proxy_anonymity(response_json)
