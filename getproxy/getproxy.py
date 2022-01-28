@@ -74,7 +74,7 @@ class GetProxy(object):
                 timeout=5
             ).json()
             if host not in response_json.get('origin', ''):
-                print("[" + host + "]-- _validate_proxy failed" + "----" + usl)
+                # print("[" + host + "]-- _validate_proxy failed" + "----" + usl)
                 return
         except:
             return

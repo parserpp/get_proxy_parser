@@ -17,14 +17,17 @@ with open('getproxy/__init__.py', 'rb') as f:
         f.read().decode('utf-8')).group(1)))
 
 
-requirements = [
-    'click==6.0',
-    'requests==2.13.0',
-    'gevent==1.2.1',
-    'geoip2==2.5.0',
-    'maxminddb==1.5.2',
-    'retrying==1.3.3'
-]
+# requirements = [
+#     'click==6.0',
+#     'requests==2.13.0',
+#     'gevent==1.2.1',
+#     'geoip2==2.5.0',
+#     'maxminddb==1.5.2',
+#     'retrying==1.3.3'
+# ]
+
+with open('requirements_dev.txt', 'r', encoding='utf-8') as fin:
+    requirements = [i.strip() for i in fin.readlines()]
 
 setup(
     name='getproxy',
