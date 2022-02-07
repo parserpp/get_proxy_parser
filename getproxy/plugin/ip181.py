@@ -23,7 +23,7 @@ class Proxy(object):
         self.result = []
 
     @retrying.retry(stop_max_attempt_number=3)
-    def extract_proxy(self, page_num):
+    def extract_proxy(self):
         try:
             rp = requests.get(self.url, proxies=self.cur_proxy, timeout=10)
             re_ip_port_result = self.re_ip_port_pattern.findall(rp.text)
@@ -32,7 +32,7 @@ class Proxy(object):
                 raise Exception("empty")
 
         except Exception as e:
-            logger.error("[-] Request page {page} error: {error}".format(page=page_num, error=str(e)))
+            logger.error("[-] Request error: {error}".format( error=str(e)))
             while self.proxies:
                 new_proxy = self.proxies.pop(0)
                 self.cur_proxy = {new_proxy['type']: "%s:%s" % (new_proxy['host'], new_proxy['port'])}
@@ -43,7 +43,7 @@ class Proxy(object):
         return [{"host": host, "port": int(port), "from": "ip181"} for host, port in re_ip_port_result]
 
     def start(self):
-        page_result = self.extract_proxy(0)
+        page_result = self.extract_proxy()
         if not page_result:
             return
 
