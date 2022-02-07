@@ -22,7 +22,7 @@ class Proxy(object):
     @retrying.retry(stop_max_attempt_number=3)
     def extract_proxy(self, url):
         re_ip_port_result = []
-        logger.error("[-] Request url {url} ".format(url=url))
+        logger.info("[-] Request url {url} ".format(url=url))
         for cc in range(30):
             try:
                 headers = {
