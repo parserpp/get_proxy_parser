@@ -56,7 +56,7 @@ class Proxy(object):
                 raise e
             else:
                 return []
-        for cc in range(40):
+        for cc in range(10):
             u = 'https://gimmeproxy.com/api/getProxy?ipPort=true&post=true&supportsHttps=true&maxCheckPeriod=300&minSpeed=50'
             headers = {
                 'User-Agent': "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) "
