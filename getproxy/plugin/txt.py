@@ -3,11 +3,11 @@
 
 from __future__ import unicode_literals, absolute_import, division, print_function
 
-import re
 import logging
-import retrying
-import requests
+import re
 
+import requests
+import retrying
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class Proxy(object):
             'http://static.fatezero.org/tmp/proxy.txt',
             'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt',
             'http://pubproxy.com/api/proxy?limit=20&format=txt&type=http',
-            #'http://comp0.ru/downloads/proxylist.txt',
+            # 'http://comp0.ru/downloads/proxylist.txt',
             'http://www.proxylists.net/http_highanon.txt',
             'http://www.proxylists.net/http.txt',
             'http://ab57.ru/downloads/proxylist.txt',
@@ -56,6 +56,15 @@ class Proxy(object):
                 raise e
             else:
                 return []
+        for cc in range(40):
+            u = 'https://gimmeproxy.com/api/getProxy?ipPort=true&post=true&supportsHttps=true&maxCheckPeriod=300&minSpeed=50'
+            headers = {
+                'User-Agent': "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) "
+                              "Chrome/21.0.1180.89 Safari/537.1'"
+            }
+            res = requests.get(u, proxies=self.cur_proxy, headers=headers, timeout=10)
+            if res.text not in re_ip_port_result:
+                re_ip_port_result.append(res.text)
 
         return [{'host': host, 'port': int(port), 'from': 'txt'} for host, port in re_ip_port_result]
 
