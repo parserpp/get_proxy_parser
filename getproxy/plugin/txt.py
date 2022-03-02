@@ -31,7 +31,16 @@ class Proxy(object):
             'http://ab57.ru/downloads/proxylist.txt',
             'https://www.rmccurdy.com/scripts/proxy/good.txt',
             'https://raw.githubusercontent.com/parserpp/ip_ports/main/proxyinfo.txt',
-            'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt'
+            'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt',
+            'https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt',
+            'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt',
+            'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks4.txt',
+            'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt',
+            'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/http.txt',
+            'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/https.txt',
+            'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/proxy.txt',
+            'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks4.txt',
+            'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks5.txt'
         ]
 
     @retrying.retry(stop_max_attempt_number=3)
